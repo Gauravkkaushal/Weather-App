@@ -1,0 +1,329 @@
+*{
+    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+body{
+    background-image: url('images/background1.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.container{
+    background-color: rgba(36, 34, 34, 0.593);
+    height: 80%;
+    width: 70%;
+    border: 0.2rem solid black;
+    border-radius: 1rem;
+    display: flex;
+    /* justify-content: space-evenly;
+    align-items: space-evenly; */
+}
+.card1{
+    /* border: 0.2rem solid black; */
+    height: 90%;
+    width: 35%;
+    margin: 1.875rem 0 1.875rem 3.5rem;
+
+}
+.card2{
+    border: 0.2rem solid black;
+    height: 90%;
+    width: 50%;
+    margin: 1.875rem;
+}
+.box1{
+    margin: 0.625rem;
+    height: 2rem;
+    width: 95%;
+    /* border: 0.2rem solid black; */
+    border-radius: 10px;
+}
+.box2{
+     background-image: url('images/background1.png');
+    margin: 0.625rem;
+    /* border: 0.2rem solid black; */
+    width: 95%;
+    height: 25rem;
+    border-radius: 10px;
+}
+.hourly-one{
+    /* background-color: rgba(0, 0, 0, 0.7); */
+    border: 0.2rem solid black;
+    margin: 0.625rem;
+    height: 130px;
+    border-radius: 10px;
+}
+.day-one{
+    border: 0.2rem solid black;
+    margin: 0.625rem;
+    height: 130px;
+    border-radius: 10px;
+}
+.uv-index{
+    display: flex;
+    justify-content: space-evenly;
+    border: 0.2rem solid black;
+    margin: 0.625rem;
+    height: 130px;
+    border-radius: 10px;
+}
+.uv-one{
+    border: 0.2rem solid black;
+    margin: 0.625rem;
+    width: 40%;
+    /* height: 150px; */
+    border-radius: 10px;
+}
+.wind-one{
+    border-radius: 10px;
+    border: 0.2rem solid black;
+    margin: 0.625rem;
+    width: 40%;
+    /* height: 150px; */
+}
+
+/* .box1 input{
+    width: 100%;
+    padding: 1px;
+    border-radius: 10px;
+    background-color: #34333c;
+} */
+.temperature-one{
+    /* border: 0.2rem solid black; */
+    height: 190px;
+    /* padding: 20px; */
+    margin: 6px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.temperature-one h2,p,h3{
+    color: #ffffff;
+}
+.temperature-one h3{
+    font-size: 18px;
+}
+.temperature-one h2{
+    font-size: 60px;
+}
+.temperature-one p{
+    font-size: 12px;
+}
+.other-one{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    margin: 5px;
+    /* border: 0.2rem solid black; */
+    height: 200px;
+    gap: 5px;
+}
+.feel-like,.humidity,.precipitation,.visibility{
+    padding: 4px;
+    border: 0.2rem solid rgb(28,32,40);
+    /* background-color: rgba(28, 32, 40,0.5); */
+    border-radius:15px ;
+}
+.feel-like h2{
+    color: #ffffff;
+    font-size: 25px;
+    margin: 3px;
+}
+.precipitation h2{
+    color: #ffffff;
+    font-size: 25px;
+    margin: 3px;
+}
+.humidity h2{
+    color: #ffffff;
+    font-size: 25px;
+    margin: 3px;
+}
+.visibility h2{
+    color: #ffffff;
+    font-size: 25px;
+    margin: 3px;
+}
+.search-bar{
+width: 100%;
+max-width: 500px;
+background: rgba(255, 255, 255, 0.2);
+display: flex;
+align-items: center;
+border-radius: 20px;
+padding: 5px ;
+height: 2rem;
+}
+.search-bar input{
+    background: transparent;
+    flex: 1;
+    border: 0;
+    outline: none;
+}
+.search-bar button img{
+    filter: brightness(0) invert(1);
+    width: 10px;
+    /* border-radius: 50%; */
+    
+}
+.search-bar button{
+    border: 0;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    background:rgba(22, 42, 61,0.5);
+    cursor: pointer;
+}
+span{
+    color: rgb(162, 178, 187);
+    font-size:15px;
+    /* text-align: end; */
+    /* position: relative; */
+}
+
+.card1, .card2 {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(12px);
+  border: none;
+  border-radius: 20px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  color: white;
+}
+
+.card2 h3 {
+  padding: 10px 20px;
+  font-size: 16px;
+  color: #ffffff;
+}
+
+.hourly-one, .day-one {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  /* background-color: rgba(10, 9, 9, 0.258); */
+  backdrop-filter: blur(5px);
+  color: white;
+  font-size: 14px;
+  font-weight: 400;
+  padding: 10px;
+}
+
+.hourly-one div, .day-one div {
+  text-align: center;
+}
+
+.uv-one, .wind-one {
+  /* background-color: rgba(255, 255, 255, 0.06); */
+  backdrop-filter: blur(5px);
+  padding: 5px 10px;
+  /* text-align: center; */
+  color: white;
+}
+
+.uv-one h2, .wind-one h2 {
+  font-size: 14px;
+  color: #aaa;
+}
+
+.uv-one .value{
+  font-size: 24px;
+  font-weight: bold;
+  /* margin: 5px 0; */
+}
+.wind-one .value{
+    font-size: 40px;
+    font-weight: bold;
+}
+
+.hourly-forecast{
+     max-width: 800px;
+  margin: auto;
+  /* background: #1e1e1e; */
+  padding: 10px;
+  border-radius: 10px;
+}
+#hourly, #daily {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.forecast-item {
+  background: #2a2a2a;
+  padding: 10px;
+  margin: 10px 5px;
+  border-radius: 8px;
+  text-align: center;
+  flex: 1 1 20px;
+}
+
+.forecast-item img {
+  width: 40px;
+  height: 40px;
+}
+.range{
+    width: 100%;
+    height: 5px;
+    /* accent-color: red;
+     */
+     -webkit-appearance: none;
+     background: linear-gradient(to right,
+    #00ff00,  /* green */
+    #ffff00,  /* yellow */
+    #ff8000,  /* orange */
+    #ff0000,  /* red */
+    #ff00ff   /* magenta/pink */
+  );
+    outline: none;
+}
+/* .range::-webkit-slider-thumb{
+    -webkit-appearance: none;
+    height: 12px;
+    width: 10px;
+    border-radius: 50%;
+    border: 2px solid black;
+    background-color: #ffffff;
+} */
+ .range::-webkit-slider-thumb {
+  appearance: none;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: white;
+  border: 2px solid black;
+  cursor: pointer;
+  position: relative;
+  z-index: 2;
+}
+
+.rain-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 999;
+}
+
+.drop {
+  position: absolute;
+  bottom: 100%;
+  width: 1px;
+  height: 80px;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.2), transparent);
+  animation: fall linear infinite;
+  opacity: 0.5;
+}
+
+@keyframes fall {
+  to {
+    transform: translateY(120vh);
+  }
+}

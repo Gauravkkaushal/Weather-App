@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Weather App</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="rain-background"></div>
+  <div class="container">
+    <!-- Left Section -->
+    <div class="left-panel">
+      <input type="text" value="Hanoi, Vietnam" class="city-input" />
+      <div class="main-weather">
+        <h1 class="temp">28°</h1>
+        <p class="condition">Rainy Day</p>
+        <p class="desc">Today, expect a rainy day with temperatures reaching a maximum of 28°C. Make sure to grab your umbrella and raincoat before heading out.</p>
+      </div>
+      <div class="weather-stats">
+        <div class="stat">
+          <h2>FEELS LIKE</h2>
+          <p class="value">30°</p>
+          <p class="note">Humidity is making it feel warmer</p>
+        </div>
+        <div class="stat">
+          <h2>PRECIPITATION</h2>
+          <p class="value">2.3”</p>
+          <p class="note">in last 24h</p>
+        </div>
+        <div class="stat">
+          <h2>VISIBILITY</h2>
+          <p class="value">6 mi</p>
+        </div>
+        <div class="stat">
+          <h2>HUMIDITY</h2>
+          <p class="value">82%</p>
+          <p class="note">The dew point is 25° right now</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right Section -->
+    <div class="right-panel">
+      <div class="hourly-section">
+        <h3>HOURLY FORECAST</h3>
+        <div class="hourly-forecast">
+          <div class="hour">Now<br/>28°<br/>🌧️</div>
+          <div class="hour">15:00<br/>28°<br/>🌧️</div>
+          <div class="hour">16:00<br/>26°<br/>☁️</div>
+          <div class="hour">17:00<br/>29°<br/>🌧️</div>
+          <div class="hour">18:00<br/>32°<br/>🌤️</div>
+        </div>
+      </div>
+
+      <div class="daily-section">
+        <h3>10-DAY FORECAST</h3>
+        <div class="daily-forecast">
+          <div class="day">Wed<br/>28°🌧️</div>
+          <div class="day">Thu<br/>28°🌧️</div>
+          <div class="day">Fri<br/>26°🌧️</div>
+          <div class="day">Sat<br/>29°🌧️</div>
+          <div class="day">Sun<br/>32°🌤️</div>
+          <div class="day">Mon<br/>28°🌧️</div>
+        </div>
+      </div>
+
+      <div class="bottom-cards">
+        <div class="card uv-index">
+          <h2>UV INDEX</h2>
+          <p class="value">3</p>
+          <p class="note">Moderate</p>
+        </div>
+        <div class="card wind">
+          <h2>WIND</h2>
+          <p class="value">3 MPH</p>
+          <p class="note">9 MPH Gusts</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
