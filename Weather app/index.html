@@ -1,88 +1,82 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WeatherApp</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Weather App</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-    <div class="rain-wrapper"></div>
+
+  <!-- Rain Animation -->
+  <div class="rain-wrapper"></div>
+
   <div class="container">
+
+    <!-- LEFT CARD -->
     <div class="card1">
-        <div class="box1">
-            <form action="#" class="search-bar">
-            <input type="search" placeholder="Search Bar" id="input">
-            <button type="submit" id="search"><img src="images/icons8-search-30.png" alt="search-icon"></button>
+      <div class="box1">
+        <form class="search-bar">
+          <input type="search" placeholder="Search city..." id="input" />
+          <button id="search">
+            <img src="images/icons8-search-30.png" alt="search" />
+          </button>
+        </form>
+      </div>
 
-            </form>
+      <div class="box2">
+        <div class="temperature-one">
+          <h2 id="temp">--°C</h2>
+          <h3>Weather</h3>
+          <p>Search for a city to see weather details</p>
         </div>
-        <div class="box2">
-            <div class="temperature-one">
-                <h2 id="temp">--C</h2> 
-                <h3>Rainy Day</h3>
-                <p>Today. expect a ainy with tempera€ures reaching a maximum Of 2800. Make
-sure to 'your umbrella and coat before heading</p>
 
-            </div>
         <div class="other-one">
-                <!-- <div class="feel-prepcipitation"> -->
-                <div class="feel-like">
-                    <img src="images/1.png" alt="" width="20px" height="20px">
-                     <span>feel-like</span>
-                     <h2>26°</h2>
-                </div>
-                <div class="precipitation">
-                    <img src="images/2.png" alt="" width="20px" height="20px">
-                    <span>Precipitation</span>
-                    <h2>26°</h2>
-                <!-- </div> -->
-            </div>
-            <!-- <div class="visibility-humidity"> -->
-                <div class="visibility">
-                    <img src="images/3.png" alt="" width="20px" height="20px">
-                    <span>Visibility</span>
-                    <h2>26°</h2>
-                </div>
-                <div class="humidity">
-                    <img src="images/4.png" alt="" width="20px" height="20px">
-                    <span>Humidity</span>
-                    <h2>26°</h2>
-                </div>
-            <!-- </div> -->
-            </div>
-        </div>
-    </div>
-    <div class="card2">
-        <div class="hourly-forecast">
-            <div class="hourly-one">
-               <!-- <h2>Hourly Forecast</h2> -->
-    <div id="hourly"></div>
-            </div>
-            <div class="day-one">
-                <!-- <h2>5-Day Forecast</h2> -->
-    <div id="daily"></div>
-            </div>
-        </div>
-        <div class="uv-index">
-            <div class="uv-one">
-                <img src="images/1.png" alt="" width="20px" height="20px">
-                <span>UV INDEX</span>
-<p class="value">3</p>
-<p class="note">Moderate</p>
-<input type="range" class="range" min="0" max="10" value="3">
-            </div>
-            <div class="wind-one">
-                <img src="images/45.png" alt="" width="20px" height="20px">
-                <span>WIND</span>
+          <div class="feel-like">
+            <span>Feels Like</span>
+            <h2>--°</h2>
+          </div>
 
-                <div class="x" style="display: flex;">
-<p class="value">3</p>
-<span style="text-align: bottom;">MPH</span></div>
-            </div>
+          <div class="precipitation">
+            <span>Precipitation</span>
+            <h2>--%</h2>
+          </div>
+
+          <div class="visibility">
+            <span>Visibility</span>
+            <h2>-- km</h2>
+          </div>
+
+          <div class="humidity">
+            <span>Humidity</span>
+            <h2>--%</h2>
+          </div>
         </div>
+      </div>
+    </div>
+
+    <!-- RIGHT CARD -->
+    <div class="card2">
+
+      <div class="hourly-one">
+  <h3 class="section-title">Hourly Forecast</h3>
+  <div id="hourly"></div>
+</div>
+
+<div class="day-one">
+  <h3 class="section-title">5-Day Forecast</h3>
+  <div id="daily"></div>
+</div>
+
+
+      <div class="wind-one">
+        <span>Wind Speed</span>
+        <p class="value">-- m/s</p>
+      </div>
+
     </div>
   </div>
+
   <script src="app.js"></script>
 </body>
 </html>
