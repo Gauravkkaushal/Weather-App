@@ -1,184 +1,118 @@
-// const API_KEY = 'a9c8bbab47d7a752c0963453fab539ca';
-// const CITY = 'Delhi';
-
-// async function fetchForecast() {
-//   const res = await fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${CITY}&units=metric&appid=${API_KEY}`);
-//   const data = await res.json();
-//   displayHourly(data.list.slice(0, 5));
-//   displayDaily(data.list);
-// }
-
-// function displayHourly(hourlyData) {
-//   const container = document.getElementById('hourly');
-//   container.innerHTML = '';
-//   hourlyData.forEach(hour => {
-//     const date = new Date(hour.dt * 1000);
-//     const item = document.createElement('div');
-//     item.className = 'forecast-item';
-//     item.innerHTML = `
-//       <div>${date.getHours()}:00</div>
-//       <img src="https://openweathermap.org/img/wn/${hour.weather[0].icon}@2x.png" alt="">
-//       <div>${Math.round(hour.main.temp)}°C</div>
-//     `;
-//     container.appendChild(item);
-//   });
-// }
-
-// function displayDaily(dataList) {
-//   const container = document.getElementById('daily');
-//   container.innerHTML = '';
-
-//   const dailyMap = new Map();
-
-//   for (const entry of dataList) {
-//     const date = new Date(entry.dt * 1000).toISOString().split('T')[0];
-//     if (!dailyMap.has(date)) {
-//       dailyMap.set(date, entry);
-//     }
-//   }
-
-//   const dailyEntries = Array.from(dailyMap.values()).slice(0, 5);
-
-//   dailyEntries.forEach(day => {
-//     const date = new Date(day.dt * 1000);
-//     const item = document.createElement('div');
-//     item.className = 'forecast-item';
-//     item.innerHTML = `
-//       <div>${date.toLocaleDateString('en-GB', { weekday: 'short', day: 'numeric', month: 'short' })}</div>
-//       <img src="https://openweathermap.org/img/wn/${day.weather[0].icon}@2x.png" alt="">
-//       <div>${Math.round(day.main.temp)}°C</div>
-//     `;
-//     container.appendChild(item);
-//   });
-// }
-
-// fetchForecast();
-
-
 const API_KEY = 'a9c8bbab47d7a752c0963453fab539ca';
 
-// Trigger search on button click
-document.getElementById('search').addEventListener('click', function (e) {
+// Button Search
+document.getElementById('search').addEventListener('click', (e) => {
   e.preventDefault();
   const city = document.getElementById('input').value.trim();
   if (city) {
-    fetchForecast(city);
-  } else {
-    alert("Please enter a city name");
+    fetchWeather(city);
   }
 });
 
-// Main function to fetch weather
-async function fetchForecast(city) {
+// MAIN FETCH FUNCTION
+async function fetchWeather(city) {
   try {
-    const res = await fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=metric&appid=${API_KEY}`);
+    const res = await fetch(
+      `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=metric&appid=${API_KEY}`
+    );
+
     const data = await res.json();
 
-    if (data.cod !== "200") {
-      alert("City not found!");
+    // ✅ FIXED CITY CHECK
+    if (data.cod != 200) {
+      alert(data.message || "City not found");
       return;
     }
 
-    displayMain(data.list[0], city);         // display main info
-    // console.log(data.list);
-    displayHourly(data.list.slice(0, 5));    // next few hours
-    displayDaily(data.list);                // next 5 days
+    updateMain(data.list[0], city);
+    showHourly(data.list.slice(0, 5));
+    showDaily(data.list);
   } catch (err) {
-    console.error("Error fetching forecast:", err);
+    console.error("Error:", err);
+    alert("Something went wrong!");
   }
 }
 
-// MAIN TEMPERATURE & DETAILS DISPLAY
-function displayMain(todayData, city) {
-  document.getElementById('temp').textContent = `${Math.round(todayData.main.temp)}°C`;
-  document.querySelector('.temperature-one h3').textContent = todayData.weather[0].main;
-  document.querySelector('.temperature-one p').textContent = `Today in ${city}, expect ${todayData.weather[0].description}.`;
+// UPDATE MAIN UI
+function updateMain(d, city) {
+  document.getElementById('temp').textContent = `${Math.round(d.main.temp)}°C`;
+  document.querySelector('.temperature-one h3').textContent = d.weather[0].main;
+  document.querySelector('.temperature-one p').textContent =
+    `Today in ${city}, expect ${d.weather[0].description}.`;
 
-  // Fill other boxes
-  document.querySelector('.feel-like h2').textContent = `${Math.round(todayData.main.feels_like)}°`;
-  document.querySelector('.humidity h2').textContent = `${todayData.main.humidity}%`;
-  document.querySelector('.precipitation h2').textContent = `${todayData.pop * 100}%`; // probability of precipitation
-  document.querySelector('.visibility h2').textContent = `${todayData.visibility / 1000} km`;
+  document.querySelector('.feel-like h2').textContent =
+    `${Math.round(d.main.feels_like)}°`;
 
-  // Wind speed
-  document.querySelector('.wind-one .value').textContent = todayData.wind.speed;
+  document.querySelector('.humidity h2').textContent =
+    `${d.main.humidity}%`;
 
-  // UV Index not in forecast API, you'd need OneCall API or skip
-  document.querySelector('.uv-one .value').textContent = "N/A";
-  document.querySelector('.uv-one .note').textContent = "Unavailable";
+  document.querySelector('.visibility h2').textContent =
+    `${(d.visibility / 1000).toFixed(1)} km`;
+
+  document.querySelector('.precipitation h2').textContent =
+    `${Math.round(d.pop * 100)}%`;
+
+  document.querySelector('.wind-one .value').textContent =
+    `${d.wind.speed} m/s`;
 }
 
-// HOURLY
-function displayHourly(hourlyData) {
-  const container = document.getElementById('hourly');
-  container.innerHTML = '';
-  hourlyData.forEach(hour => {
-    const date = new Date(hour.dt * 1000);
-    const item = document.createElement('div');
-    item.className = 'forecast-item';
-    item.innerHTML = `
-      <div>${date.getHours()}:00</div>
-      <img src="https://openweathermap.org/img/wn/${hour.weather[0].icon}@2x.png" alt="">
-      <div>${Math.round(hour.main.temp)}°C</div>
+// HOURLY FORECAST
+function showHourly(data) {
+  const box = document.getElementById('hourly');
+  box.innerHTML = '';
+
+  data.forEach(h => {
+    const time = new Date(h.dt * 1000).getHours();
+    box.innerHTML += `
+      <div class="forecast-item">
+        <div>${time}:00</div>
+        <img src="https://openweathermap.org/img/wn/${h.weather[0].icon}@2x.png">
+        <div>${Math.round(h.main.temp)}°</div>
+      </div>
     `;
-    container.appendChild(item);
   });
 }
 
-// DAILY
-function displayDaily(dataList) {
-  const container = document.getElementById('daily');
-  container.innerHTML = '';
-  const dailyMap = new Map();
+// DAILY FORECAST
+function showDaily(list) {
+  const box = document.getElementById('daily');
+  box.innerHTML = '';
 
-  for (const entry of dataList) {
-    const date = new Date(entry.dt * 1000).toISOString().split('T')[0];
-    if (!dailyMap.has(date)) {
-      dailyMap.set(date, entry);
+  const days = new Map();
+
+  list.forEach(d => {
+    const date = new Date(d.dt * 1000).toDateString();
+    if (!days.has(date)) {
+      days.set(date, d);
     }
-  }
+  });
 
-  const dailyEntries = Array.from(dailyMap.values()).slice(0, 5);
-
-  dailyEntries.forEach(day => {
-    const date = new Date(day.dt * 1000);
-    const item = document.createElement('div');
-    item.className = 'forecast-item';
-    item.innerHTML = `
-      <div>${date.toLocaleDateString('en-GB', { weekday: 'short', day: 'numeric', month: 'short' })}</div>
-      <img src="https://openweathermap.org/img/wn/${day.weather[0].icon}@2x.png" alt="">
-      <div>${Math.round(day.main.temp)}°C</div>
+  [...days.values()].slice(0, 5).forEach(d => {
+    box.innerHTML += `
+      <div class="forecast-item">
+        <div>${new Date(d.dt * 1000).toLocaleDateString('en-GB', {
+          weekday: 'short'
+        })}</div>
+        <img src="https://openweathermap.org/img/wn/${d.weather[0].icon}@2x.png">
+        <div>${Math.round(d.main.temp)}°</div>
+      </div>
     `;
-    container.appendChild(item);
   });
 }
 
-// Optionally load default city (like Delhi) on first load
-fetchForecast("Delhi");
-
-
-
-
-function createRainEffect() {
-  const rainWrapper = document.querySelector('.rain-wrapper');
-  const dropCount = 100; // Number of drops
-
-  for (let i = 0; i < dropCount; i++) {
+// 🌧️ RAIN EFFECT
+function createRain() {
+  const wrap = document.querySelector('.rain-wrapper');
+  for (let i = 0; i < 100; i++) {
     const drop = document.createElement('div');
     drop.className = 'drop';
-
-    // Random horizontal position
-    drop.style.left = `${Math.random() * 100}vw`;
-
-    // Random animation duration & delay
-    drop.style.animationDuration = `${0.5 + Math.random()}s`;
-    drop.style.animationDelay = `${Math.random() * 2}s`;
-
-    // Random height
-    drop.style.height = `${20 + Math.random() * 60}px`;
-
-    rainWrapper.appendChild(drop);
+    drop.style.left = Math.random() * 100 + 'vw';
+    drop.style.animationDuration = (0.5 + Math.random()) + 's';
+    wrap.appendChild(drop);
   }
 }
 
-createRainEffect();
+createRain();
+
+// ✅ DEFAULT CITY = DELHI
+fetchWeather("Delhi");
